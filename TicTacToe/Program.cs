@@ -3,7 +3,9 @@
 class TicTacToe
 {
     static string[] board = { "  1  ", "  2  ", "  3  ", "  4  ", "  5  ", "  6  ", "  7  ", "  8  ", "  9  " };
-    static int currentPlayer = 1; // 1 - крестики, 2 - нолики
+    static int currentPlayer = 1;
+    const string X = "| X |";
+    const string O = "| O |";
     static void Main()
     {
         int choice;
@@ -17,12 +19,12 @@ class TicTacToe
             Console.WriteLine($"Игрок {currentPlayer}, введите номер ячейки:");
 
             // Проверяем корректность ввода: число от 1 до 9, и ячейка не должна быть занята
-            validInput = int.TryParse(Console.ReadLine(), out choice) && choice >= 1 && choice <= 9 && board[choice - 1] != "| X |" && board[choice - 1] != "| O |";
+            validInput = int.TryParse(Console.ReadLine(), out choice) && choice >= 1 && choice <= 9 && board[choice - 1] != X && board[choice - 1] != O;
 
             if (validInput)
             {
                 // Заполняем ячейку текущим символом (X или O)
-                board[choice - 1] = (currentPlayer == 1) ? "| X |" : "| O |";
+                board[choice - 1] = (currentPlayer == 1) ? X : O;
 
                 // Проверяем на наличие выигрышной комбинации
                 if (CheckForWin())
@@ -88,7 +90,7 @@ class TicTacToe
         // Проверяем, остались ли свободные ячейки
         foreach (string cell in board)
         {
-            if (cell != "| X |" && cell != "| O |")
+            if (cell != X && cell != O)
                 return false;
         }
         return true;
