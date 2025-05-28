@@ -8,27 +8,30 @@ namespace Phonebook
 {
     class Abonent
     {
-        public string Name { get; set; }
-
-        private string phone;
-        public string Phone 
+        public string Name { get; private set; }
+        
+        private string _phone;
+        public string Phone
         {
-            get 
-            {  
-                return phone;
+            get
+            {
+                return _phone;
             }
             set
             {
-                if (string.IsNullOrEmpty(phone))
-                    throw new ArgumentNullException("Абонент с таким нормером уже существует!");
+                if (string.IsNullOrEmpty(value))
+                    throw new ArgumentNullException("Абонент с таким номером телефона уже есть!");
 
-                phone = value;
+                _phone = value;
             }
         }
-        public Abonent(string name, string phone) 
+        public Abonent(string name, string phone)
         {
-            this.Phone = phone;
             this.Name = name;
+            this.Phone = phone;
         }
+
+        
+
     }
 }
