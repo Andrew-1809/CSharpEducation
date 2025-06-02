@@ -1,16 +1,28 @@
-﻿using System;
+﻿using ClassLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Phonebook
+namespace ClassLibrary
 {
-    class Abonent
+    public class Abonent
     {
-        public string Name { get; private set; }
+        private string _name = "<пусто>";
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+            }
+        }
         
-        private string _phone;
+        private string _phone = "<пусто>";
         public string Phone
         {
             get
@@ -19,12 +31,11 @@ namespace Phonebook
             }
             set
             {
-                if (string.IsNullOrEmpty(value))
-                    throw new ArgumentNullException("Абонент с таким номером телефона уже есть!");
-
                 _phone = value;
             }
         }
+
+        public Abonent() { }
         public Abonent(string name, string phone)
         {
             this.Name = name;
@@ -32,6 +43,5 @@ namespace Phonebook
         }
 
         
-
     }
 }
