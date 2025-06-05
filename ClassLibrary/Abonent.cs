@@ -9,7 +9,7 @@ namespace ClassLibrary
 {
     public class Abonent
     {
-        private string _name = "<пусто>";
+        private string _name;
         public string Name
         {
             get
@@ -22,7 +22,7 @@ namespace ClassLibrary
             }
         }
         
-        private string _phone = "<пусто>";
+        private string _phone;
         public string Phone
         {
             get
@@ -41,7 +41,7 @@ namespace ClassLibrary
             this.Name = name;
             this.Phone = phone;
         }
+                
 
-        
     }
 }
