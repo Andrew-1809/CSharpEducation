@@ -12,10 +12,18 @@ namespace ClassLibrary
     {
         private List<Abonent> _abonents { get; set; } = [];
 
-        public void WriteAbonentToPhonebook(Abonent abonent)
+        public void WriteAbonentToPhonebook(Abonent abonent, string phone)
         {
+            for (int i = 0; i < _abonents.Count; i++)
+            {
+                if (_abonents[i].Phone == phone)
+                    throw new KeyNotFoundException("Абонент с таким номером телефона уже существует!");               
+            }
+
             _abonents.Add(abonent);
+                Console.WriteLine($"Абонент успешно сохранен!");
         }
+               
 
         public static void PrintAbonentInfo(int id, Abonent abonent)
         {
@@ -51,7 +59,7 @@ namespace ClassLibrary
                 
         public Abonent GetById(int id)
         {
-            if (id <= _abonents.Count)
+            if (id < _abonents.Count)
                 return _abonents[id];
 
             else

@@ -33,10 +33,8 @@ namespace Phonebook
                     Console.Write("Введите номер телефона: ");
                     string abonentPhone = Console.ReadLine();
                     Console.WriteLine();
-
-                    book.WriteAbonentToPhonebook(new Abonent(abonentName, abonentPhone));
-
-                    Console.WriteLine($"Абонент успешно сохранен!");
+                                        
+                    book.WriteAbonentToPhonebook(new Abonent(abonentName, abonentPhone), abonentPhone);                                    
                                                             
                 }
                 if (userImput == "2")
