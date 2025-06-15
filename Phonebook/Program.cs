@@ -1,7 +1,12 @@
 ﻿using ClassLibrary;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Numerics;
+using System.Threading.Tasks;
 using System.Xml.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Phonebook
 {
@@ -9,9 +14,13 @@ namespace Phonebook
     {
         static void Main(string[] args)
         {
+            //Путь к файлу, в который ведется запись всех абонентов
+            string path = "C:\\Users\\fedan\\Desktop\\IT\\C#\\git\\CSharpEducation\\Phonebook\\_Справочник_\\phonebook.txt";            
             var book = new Abonents_List();
+            
+            //Чтение всех сохраненных абонентов из файла
+            book.ReadFromFile(path);
 
-                                   
             while (true)
             {
                 Console.WriteLine("Меню:\n" +
@@ -19,7 +28,8 @@ namespace Phonebook
                     "2. Удалить абонента.\n" +
                     "3. Вывести информацию об абоненте.\n" +
                     "4. Поиск абонента по телефону.\n" +
-                    "5. Поиск абонент по имени.");
+                    "5. Поиск абонент по имени.\n" +
+                    "Для завершения программы нажмите '0'.");
                 Console.WriteLine();
 
                 var userImput = Console.ReadLine();
@@ -34,8 +44,8 @@ namespace Phonebook
                     string abonentPhone = Console.ReadLine();
                     Console.WriteLine();
                                         
-                    book.WriteAbonentToPhonebook(new Abonent(abonentName, abonentPhone), abonentPhone);                                    
-                                                            
+                    book.WriteAbonentToPhonebook(new Abonent(abonentName, abonentPhone), abonentPhone);
+                    
                 }
                 if (userImput == "2")
                 {
@@ -79,12 +89,20 @@ namespace Phonebook
                     Abonents_List.PrintAbonentWOID(ab);
 
                 }
+                if (userImput == "0")
+                {
+                    //Запись всех абонентов в файл
+                    book.WriteToFile(path);
+
+                    //Завершение программы
+                    Environment.Exit(0);
+                }
 
                 Console.ReadKey(); Console.Clear();
 
-
             }
-            
+
+
         }
     }
 }
